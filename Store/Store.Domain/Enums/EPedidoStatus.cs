@@ -1,4 +1,4 @@
-﻿namespace Store.Domain
+﻿namespace Store.Domain.Enums
 {
     public enum EPedidoStatus
     {

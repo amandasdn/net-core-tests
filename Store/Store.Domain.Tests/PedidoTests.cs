@@ -1,4 +1,4 @@
-using System;
+using Store.Domain.Entities;
 using System.Linq;
 using Xunit;
 
@@ -6,8 +6,8 @@ namespace Store.Domain.Tests
 {
     public class PedidoTests
     {
-        private const string TraitName = "Categoria";
-        private const string TraitValue = "Pedido Tests";
+        private const string TraitName = "Unit Tests";
+        private const string TraitValue = "Pedido";
 
         [Fact(DisplayName = "Adicionar Item - Novo Pedido")]
         [Trait(TraitName, TraitValue)]
@@ -27,7 +27,7 @@ namespace Store.Domain.Tests
 
         [Fact(DisplayName = "Adicionar Item - Pedido Existente")]
         [Trait(TraitName, TraitValue)]
-        public void Trocar_Nome_Metodo()
+        public void AdicionarItemPedido_PedidoExistente_DeveAcrescentarUnidades()
         {
             // Arrange
             var pedido = Pedido.PedidoFactory.Rascunho(new Cliente());

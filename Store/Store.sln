@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Core", "Store.Core\Store.Core.csproj", "{B49F83BA-F355-4489-A80B-CEA9E0FAD3AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Core", "Store.Core\Store.Core.csproj", "{B49F83BA-F355-4489-A80B-CEA9E0FAD3AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Application", "Store.Application\Store.Application.csproj", "{85B1405D-B73C-46CA-AD44-195C15EB2C67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Application", "Store.Application\Store.Application.csproj", "{85B1405D-B73C-46CA-AD44-195C15EB2C67}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0211D322-A749-47C3-9F1E-5F1BB44AB64A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Store.UnitTests", "Store.UnitTests", "{0211D322-A749-47C3-9F1E-5F1BB44AB64A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Data", "Store.Data\Store.Data.csproj", "{3380D8B9-AA9F-4B5B-9073-0BABA604B044}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Data", "Store.Data\Store.Data.csproj", "{3380D8B9-AA9F-4B5B-9073-0BABA604B044}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Domain", "Store.Domain\Store.Domain.csproj", "{513A03AA-A4C5-4F39-B5FE-F5E3408DFDD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Domain", "Store.Domain\Store.Domain.csproj", "{513A03AA-A4C5-4F39-B5FE-F5E3408DFDD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Application.Tests", "Store.Application.Tests\Store.Application.Tests.csproj", "{784C8101-6BB3-459C-AF01-319D3C4B2E22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Application.Tests", "Store.Application.Tests\Store.Application.Tests.csproj", "{784C8101-6BB3-459C-AF01-319D3C4B2E22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Domain.Tests", "Store.Domain.Tests\Store.Domain.Tests.csproj", "{12BD89B2-9DE9-47FA-9518-CDC074A1B259}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Domain.Tests", "Store.Domain.Tests\Store.Domain.Tests.csproj", "{12BD89B2-9DE9-47FA-9518-CDC074A1B259}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Store.IntegrationTests", "Store.IntegrationTests", "{B28CC31C-7BB8-44E5-9899-153ADF82D965}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

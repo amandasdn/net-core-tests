@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Store.Core.DomainObjects;
+using Store.Domain.Enums;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Store.Domain
+namespace Store.Domain.Entities
 {
     public class Pedido
     {
@@ -21,10 +22,7 @@ namespace Store.Domain
             _itens = new List<PedidoItem>();
         }
 
-        public void CalcularValorTotal()
-        {
-            ValorTotal = _itens.Sum(i => i.CalcularValor());
-        }
+        private void CalcularValorTotal() => ValorTotal = _itens.Sum(i => i.CalcularValor());
 
         public void AdicionarItem(PedidoItem item)
         {
