@@ -26,8 +26,8 @@ namespace Store.Domain.Entities
 
         private void ValidarQuantidade(int qtd)
         {
-            if (qtd < Parametros.MIN_UNIDADES_ITEM) throw new DomainException($"Mínimo de {Parametros.MIN_UNIDADES_ITEM} unidade(s) por item.");
-            if (qtd > Parametros.MAX_UNIDADES_ITEM) throw new DomainException($"Máximo de {Parametros.MAX_UNIDADES_ITEM} unidades por item.");
+            if (qtd < Parametros.PEDIDO_MIN_UNIDADES_ITEM) throw new DomainException($"Mínimo de {Parametros.PEDIDO_MIN_UNIDADES_ITEM} unidade(s) por item.");
+            if (qtd > Parametros.PEDIDO_MAX_UNIDADES_ITEM) throw new DomainException($"Máximo de {Parametros.PEDIDO_MAX_UNIDADES_ITEM} unidades por item.");
         }
     }
 }

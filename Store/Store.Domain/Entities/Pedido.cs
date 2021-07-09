@@ -24,10 +24,31 @@ namespace Store.Domain.Entities
 
         private void CalcularValorTotal() => ValorTotal = _itens.Sum(i => i.CalcularValor());
 
+        public bool PedidoItemExistente(PedidoItem item) => _itens.Any(p => p.Produto.Id == item.Produto.Id);
+
+        public void ValidarItemExistente(PedidoItem item)
+        {
+            if (!PedidoItemExistente(item)) throw new DomainException("O item não pertence ao pedido.");
+        }
+
+        private void ValidarQtdItem(PedidoItem item)
+        {
+            var quantidadeItens = item.Qtd;
+            if (PedidoItemExistente(item))
+            {
+                var itemExistente = _itens.FirstOrDefault(p => p.Produto.Id == item.Produto.Id);
+                quantidadeItens += itemExistente.Qtd;
+            }
+
+            if (quantidadeItens > Parametros.PEDIDO_MAX_UNIDADES_ITEM) throw new DomainException($"Máximo de {Parametros.PEDIDO_MAX_UNIDADES_ITEM} unidades por produto.");
+        }
+
         public void AdicionarItem(PedidoItem item)
         {
+            ValidarQtdItem(item);
+
             // Verifica se o item já existe no pedido.
-            if (_itens.Any(i => i.Produto.Id == item.Produto.Id))
+            if (PedidoItemExistente(item))
             {
                 // Caso exista, acrescenta unidade em sua quantidade.
                 var itemExistente = _itens.FirstOrDefault(i => i.Produto.Id == item.Produto.Id);
@@ -43,14 +64,25 @@ namespace Store.Domain.Entities
             CalcularValorTotal();
         }
 
-        #region Status
+        public void AtualizarItem(PedidoItem item)
+        {
+            ValidarItemExistente(item);
+            ValidarQtdItem(item);
+
+            var itemExistente = Itens.FirstOrDefault(i => i.Produto.Id == item.Produto.Id);
+
+            _itens.Remove(itemExistente);
+            _itens.Add(item);
+
+            CalcularValorTotal();
+        }
+
+        #region Factory
 
         public void TornarRascunho()
         {
             PedidoStatus = EPedidoStatus.Rascunho;
         }
-
-        #endregion
 
         public static class PedidoFactory
         {
@@ -65,5 +97,7 @@ namespace Store.Domain.Entities
                 return pedido;
             }
         }
+
+        #endregion
     }
 }

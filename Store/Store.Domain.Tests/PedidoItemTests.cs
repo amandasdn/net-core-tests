@@ -7,28 +7,28 @@ namespace Store.Domain.Tests
     public class PedidoItemTests
     {
         private const string TraitName = "Unit Tests";
-        private const string TraitValue = "Pedido Item";
+        private const string TraitValue = "Domain: Pedido Item";
 
-        [Fact(DisplayName = "Adicionar Item - Abaixo do mínimo de unidades")]
+        [Fact(DisplayName = "Novo Pedido Item - Abaixo do mínimo de unidades")]
         [Trait(TraitName, TraitValue)]
-        public void AdicionarItemPedido_ItemAbaixoMinimoUnidades_RetornarException()
+        public void NovoItemPedido_ItemAbaixoMinimoUnidades_RetornarException()
         {
             // Arrange
             var produto = new Produto("Teste", 100);
 
             // Act | Assert
-            Assert.Throws<DomainException>(() => new PedidoItem(produto, Parametros.MIN_UNIDADES_ITEM - 1));
+            Assert.Throws<DomainException>(() => new PedidoItem(produto, Parametros.PEDIDO_MIN_UNIDADES_ITEM - 1));
         }
 
-        [Fact(DisplayName = "Adicionar Item - Acima do máximo de unidades")]
+        [Fact(DisplayName = "Novo Pedido Item - Acima do máximo de unidades")]
         [Trait(TraitName, TraitValue)]
-        public void AdicionarItemPedido_ItemAcimaMaximoUnidades_RetornarException()
+        public void NovoItemPedido_ItemAcimaMaximoUnidades_RetornarException()
         {
             // Arrange
             var produto = new Produto("Teste", 100);
 
             // Act | Assert
-            Assert.Throws<DomainException>(() => new PedidoItem(produto, Parametros.MAX_UNIDADES_ITEM + 1));
+            Assert.Throws<DomainException>(() => new PedidoItem(produto, Parametros.PEDIDO_MAX_UNIDADES_ITEM + 1));
         }
     }
 }
