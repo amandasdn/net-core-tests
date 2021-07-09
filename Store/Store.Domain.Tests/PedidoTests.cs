@@ -116,5 +116,39 @@ namespace Store.Domain.Tests
             // Act & Assert
             Assert.Throws<DomainException>(() => pedido.AtualizarItem(itemAtualizado));
         }
+
+        [Fact(DisplayName = "Remover Item - Pedido Inexistente")]
+        [Trait(TraitName, TraitValue)]
+        public void RemoverItemPedido_ItemNaoExistente_RetornarException()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.Rascunho(new Cliente());
+            var produto = new Produto("Teste", 100);
+            var item = new PedidoItem(produto, 5);
+
+            // Act & Assert
+            Assert.Throws<DomainException>(() => pedido.RemoverItem(item));
+        }
+
+        [Fact(DisplayName = "Remover Item - Validar Valor Total")]
+        [Trait(TraitName, TraitValue)]
+        public void RemoverItemPedido_PedidoProdutosDiferentes_AtualizarValorTotal()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.Rascunho(new Cliente());
+            var produto1 = new Produto("Teste 1", 100);
+            var item1 = new PedidoItem(produto1, 2);
+            var item2 = new PedidoItem(new Produto("Teste 2", 5), 3);
+            pedido.AdicionarItem(item1);
+            pedido.AdicionarItem(item2);
+
+            var valorTotalPedido = item1.Qtd * item1.Produto.Valor;
+
+            // Act
+            pedido.RemoverItem(item2);
+
+            // Assert
+            Assert.Equal(valorTotalPedido, pedido.ValorTotal);
+        }
     }
 }

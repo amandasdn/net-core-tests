@@ -77,6 +77,15 @@ namespace Store.Domain.Entities
             CalcularValorTotal();
         }
 
+        public void RemoverItem(PedidoItem item)
+        {
+            ValidarItemExistente(item);
+
+            _itens.Remove(item);
+
+            CalcularValorTotal();
+        }
+
         #region Factory
 
         public void TornarRascunho()
