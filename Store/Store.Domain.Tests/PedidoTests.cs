@@ -136,8 +136,8 @@ namespace Store.Domain.Tests
         {
             // Arrange
             var pedido = Pedido.PedidoFactory.Rascunho(new Cliente());
-            var produto1 = new Produto("Teste 1", 100);
-            var item1 = new PedidoItem(produto1, 2);
+            var produto = new Produto("Teste 1", 100);
+            var item1 = new PedidoItem(produto, 2);
             var item2 = new PedidoItem(new Produto("Teste 2", 5), 3);
             pedido.AdicionarItem(item1);
             pedido.AdicionarItem(item2);
@@ -149,6 +149,41 @@ namespace Store.Domain.Tests
 
             // Assert
             Assert.Equal(valorTotalPedido, pedido.ValorTotal);
+        }
+
+        [Fact(DisplayName = "Remover Item - Pedido Inexistente")]
+        [Trait(TraitName, TraitValue)]
+        public void RemoverItemPedido_ItemNaoExisteNaLista_DeveRetornarException()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.Rascunho(new Cliente());
+            var produto = new Produto("Teste 1", 100);
+            var pedidoItemRemover = new PedidoItem(produto, 2);
+
+            // Act & Assert
+            Assert.Throws<DomainException>(() => pedido.RemoverItem(pedidoItemRemover));
+        }
+
+
+        [Fact(DisplayName = "Remover Item - Deve Calcular Valor Total")]
+        [Trait(TraitName, TraitValue)]
+        public void RemoverItemPedido_ItemExistente_DeveAtualizarValorTotal()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.Rascunho(new Cliente());
+            var produto = new Produto("Teste 2", 100);
+            var pedidoItem1 = new PedidoItem(new Produto("Teste 1", 100), 2);
+            var pedidoItem2 = new PedidoItem(produto, 3);
+            pedido.AdicionarItem(pedidoItem1);
+            pedido.AdicionarItem(pedidoItem2);
+
+            var totalPedido = pedidoItem2.Qtd * pedidoItem2.Produto.Valor;
+
+            // Act
+            pedido.RemoverItem(pedidoItem1);
+
+            // Assert
+            Assert.Equal(totalPedido, pedido.ValorTotal);
         }
     }
 }
