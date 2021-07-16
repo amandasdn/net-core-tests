@@ -164,7 +164,6 @@ namespace Store.Domain.Tests
             Assert.Throws<DomainException>(() => pedido.RemoverItem(pedidoItemRemover));
         }
 
-
         [Fact(DisplayName = "Remover Item - Deve Calcular Valor Total")]
         [Trait(TraitName, TraitValue)]
         public void RemoverItemPedido_ItemExistente_DeveAtualizarValorTotal()
