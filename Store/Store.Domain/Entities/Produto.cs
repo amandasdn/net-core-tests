@@ -11,6 +11,14 @@ namespace Store.Domain.Entities
             Valor = valor;
         }
 
+        // Apenas para testes:
+        public Produto(string nome, double valor, Guid id)
+        {
+            Id = id;
+            Nome = nome;
+            Valor = valor;
+        }
+
         public Guid Id { get; private set; }
 
         public string Nome { get; private set; }

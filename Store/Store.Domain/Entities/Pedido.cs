@@ -1,5 +1,6 @@
 ﻿using Store.Core.DomainObjects;
 using Store.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +9,8 @@ namespace Store.Domain.Entities
     public class Pedido
     {
         private readonly List<PedidoItem> _itens;
+
+        public Guid Id { get; private set; }
 
         public double ValorTotal { get; private set; }
 
@@ -99,7 +102,8 @@ namespace Store.Domain.Entities
             {
                 var pedido = new Pedido
                 {
-                    Cliente = cliente
+                    Cliente = cliente,
+                    Id = Guid.NewGuid()
                 };
 
                 pedido.TornarRascunho();
@@ -108,5 +112,19 @@ namespace Store.Domain.Entities
         }
 
         #endregion
+
+
+
+        // Apenas para testes:
+        public Pedido(Guid id, List<PedidoItem> itens)
+        {
+            Id = id;
+            PedidoStatus = EPedidoStatus.Rascunho;
+
+            foreach(var i in itens)
+            {
+                AdicionarItem(i);
+            }
+        }
     }
 }
